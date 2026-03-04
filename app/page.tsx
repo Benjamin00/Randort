@@ -181,7 +181,7 @@ export default function Home() {
         {/* Zones 2–4 — Filter controls */}
         <div
           className="flex flex-1 flex-col"
-          style={{ paddingLeft: 24, paddingRight: 24, paddingTop: 24, gap: 24 }}
+          style={{ paddingLeft: 24, paddingRight: 24, paddingTop: 20, gap: 20 }}
         >
           <section aria-label="Distance">
             <RadiusSlider value={radius} onChange={setRadius} />

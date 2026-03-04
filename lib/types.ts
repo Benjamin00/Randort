@@ -107,7 +107,7 @@ export interface PlacesErrorResponse {
  * Types sourced from the Google Places API (New) Table A.
  * ─────────────────────────────────────────────────────────────────────── */
 
-const MOOD_TYPES_BASE: Record<string, string[]> = {
+export const MOOD_TYPE_MAP: Record<string, string[]> = {
   eat: [
     "restaurant",
     "bakery",
@@ -184,7 +184,6 @@ const MOOD_TYPES_BASE: Record<string, string[]> = {
     "sauna",
     "wellness_center",
     "yoga_studio",
-    "massage",
     "botanical_garden",
     "garden",
     "plaza",
@@ -277,10 +276,4 @@ const MOOD_TYPES_BASE: Record<string, string[]> = {
     "arena",
     "race_course",
   ],
-};
-
-export const MOOD_TYPE_MAP: Record<string, string[]> = {
-  ...MOOD_TYPES_BASE,
-  /* "Anything" includes all types from all other moods, plus its extras */
-  anything: Object.values(MOOD_TYPES_BASE).flat()
 };

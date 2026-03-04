@@ -4,14 +4,13 @@ import { motion } from "framer-motion";
 
 type MoodId = "eat" | "go_out" | "chill" | "outside" | "anything";
 
-const CORE_MOODS: { id: Exclude<MoodId, "anything">; label: string; icon: string }[] = [
+const MOODS: { id: MoodId; label: string; icon: string }[] = [
   { id: "eat", label: "Eat", icon: "🍽️" },
   { id: "go_out", label: "Go Out", icon: "🍸" },
   { id: "chill", label: "Chill", icon: "☕" },
   { id: "outside", label: "Outside", icon: "🌳" },
+  { id: "anything", label: "Anything", icon: "🎲" }
 ];
-
-const ANYTHING_MOOD = { id: "anything" as const, label: "Anything", icon: "🎲" };
 
 /* Resolved hex so Framer Motion can interpolate between states */
 const SHADOW_RAISED = "4px 4px 8px #C5C0B8, -4px -4px 8px #F5F2ED";
@@ -27,16 +26,7 @@ export function MoodSelector({
   onSelectionChange: (next: Set<MoodId>) => void;
 }) {
   function handleToggle(id: MoodId) {
-    if (id === "anything") {
-      /* Tapping "Anything" clears all selections — back to default */
-      onSelectionChange(new Set());
-      return;
-    }
-
     const next = new Set(selected);
-    /* Selecting a specific mood clears "anything" if it was set */
-    next.delete("anything");
-
     if (next.has(id)) {
       next.delete(id);
     } else {
@@ -56,10 +46,10 @@ export function MoodSelector({
       >
         To...
       </p>
-
-      <div className="flex justify-center" style={{ gap: 16 }}>
-        {/* Core 4 mood knobs */}
-        {CORE_MOODS.map((mood) => (
+{/* Space the buttons evenly, but not too far apart, */}
+      <div className="flex justify-center" style={{ gap: 24 }}>
+        {/* All mood knobs in a uniform row */}
+        {MOODS.map((mood) => (
           <MoodKnob
             key={mood.id}
             label={mood.label}
@@ -68,17 +58,6 @@ export function MoodSelector({
             onPress={() => handleToggle(mood.id)}
           />
         ))}
-
-        {/* Spacer pushes Anything to the right */}
-        <div style={{ flex: "0 0 40px" }} />
-
-        {/* Anything knob — spaced apart */}
-        <MoodKnob
-          label={ANYTHING_MOOD.label}
-          icon={ANYTHING_MOOD.icon}
-          active={isAnythingActive}
-          onPress={() => handleToggle("anything")}
-        />
       </div>
     </div>
   );
@@ -112,7 +91,7 @@ function MoodKnob({
         {label}
       </span>
 
-      {/* Knob body: 56x56, always surface bg — depth changes on select */}
+      {/* Knob body: 48x48, always surface bg — depth changes on select */}
       <motion.span
         animate={{
           boxShadow: active ? SHADOW_PRESSED : SHADOW_RAISED,
@@ -121,14 +100,14 @@ function MoodKnob({
         whileTap={{ scale: 0.95 }}
         className="flex items-center justify-center rounded-full"
         style={{
-          width: 56,
-          height: 56,
+          width: 48,
+          height: 48,
           backgroundColor: "var(--color-surface)",
         }}
       >
         <span
           style={{
-            fontSize: 24,
+            fontSize: 22,
             lineHeight: 1,
             filter: active ? "none" : "grayscale(0.6) opacity(0.5)",
             transition: "filter 0.2s ease",
