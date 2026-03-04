@@ -1,0 +1,60 @@
+/* Design tokens — Braun-derived warm neutrals + bright green accent.
+   Green appears ONLY on active/selected states, never decoratively.
+   Roll button gets its authority from darkness, not accent color.
+
+   These :root vars are the single source of truth. Components reference
+   them via var(). The Tailwind @theme block in globals.css mirrors
+   the static values so utility classes (bg-surface, text-accent, etc.) work. */
+
+:root {
+  /* Surfaces — Braun warm neutrals */
+  --color-background:      #EDEAE5;
+  --color-surface:         #DDD9D3;
+  --color-surface-light:   #F5F2ED;
+  --color-shadow:          #C5C0B8;
+
+  /* Text */
+  --color-text-primary:    #2A2118;
+  --color-text-secondary:  #8A8480;
+  --color-text-tertiary:   #BCB5AD;
+
+  /* Accent — bright green for selection/active states only */
+  --color-accent:          #4ADE80;
+  --color-accent-strong:   #22C55E;
+  --color-accent-glow:     rgba(74, 222, 128, 0.25);
+
+  /* Functional status (place card only, never in filter UI) */
+  --color-status-open:     #4ADE80;
+  --color-status-closing:  #EF6B4A;
+
+  /* Structural */
+  --color-divider:         #2A2118;
+  --color-roll-bg:         #1A1714;
+  --color-roll-text:       #F5F2ED;
+
+  /* Neumorphic shadow — used by error card and location fallback */
+  --shadow-pressed:
+    inset 4px 4px 8px rgba(0, 0, 0, 0.15),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.1);
+
+  /* Font families — CSS vars injected by next/font in layout.tsx */
+  --font-display:    var(--font-playfair), Georgia, serif;
+  --font-functional: var(--font-dm-sans), system-ui, sans-serif;
+}
+
+/* Dark mode — future, not wired up in MVP */
+:root[data-theme="dark"] {
+  --color-background:      #1C1814;
+  --color-surface:         #2A2520;
+  --color-surface-light:   #3A342E;
+  --color-shadow:          #0E0C0A;
+  --color-text-primary:    #EDEAE5;
+  --color-text-secondary:  #8A8480;
+  --color-text-tertiary:   #4A4440;
+  --color-accent:          #4ADE80;
+  --color-accent-strong:   #22C55E;
+  --color-accent-glow:     rgba(74, 222, 128, 0.2);
+  --color-roll-bg:         #F5F2ED;
+  --color-roll-text:       #1C1814;
+  --color-divider:         #EDEAE5;
+}

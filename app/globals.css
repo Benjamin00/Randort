@@ -1,0 +1,50 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+/* Tailwind v4 theme — mirrors static values from tokens.css so utility
+   classes like bg-surface, text-accent, border-divider, etc. are generated.
+   @theme values must be static literals (no var() references). */
+@theme {
+--color-background: #EDEAE5;
+  --color-surface: #DDD9D3;
+  --color-surface-light: #F5F2ED;
+  --color-shadow: #C5C0B8;
+
+  --color-text-primary: #2A2118;
+  --color-text-secondary: #8A8480;
+  --color-text-tertiary: #BCB5AD;
+
+  --color-accent: #4ADE80;
+  --color-accent-glow: rgba(74, 222, 128, 0.25);
+
+  --color-status-open: #4ADE80;
+  --color-status-closing: #EF6B4A;
+
+  --color-divider: #2A2118;
+  --color-roll-bg: #1A1714;
+  --color-roll-text: #F5F2ED;
+
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Font families */
+  --font-display:    var(--font-playfair), Georgia, serif;
+  --font-functional: var(--font-dm-sans), system-ui, sans-serif;
+
+  /* Border radius */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-xl:   16px;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-functional);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
