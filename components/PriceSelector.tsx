@@ -44,16 +44,6 @@ const SVG_SIZE = (KNOB_R + ARM_LENGTH + ARM_TIP_R + 8) * 2;
 const CX = SVG_SIZE / 2;
 const CY = SVG_SIZE / 2;
 
-/* ─── Knob dial ──────────────────────────────────────────────────────────── *
-
-   The pointer arm is drawn pointing right (0°) at the circle edge.
-   We rotate it using SVG's native `rotate(angle, CX, CY)` which
-   explicitly sets the rotation pivot to the knob center. A CSS
-   transition on the `transform` property gives a smooth sweep.
-
-   Framer Motion can't reliably set transformOrigin on SVG <g> elements,
-   so we bypass it entirely and use the SVG transform attribute directly. */
-
 function KnobDial({ angleDeg }: { angleDeg: number }) {
   return (
     <g>
@@ -100,7 +90,7 @@ function KnobDial({ angleDeg }: { angleDeg: number }) {
           Drawn pointing right; `rotate(angle, CX, CY)` orbits it. */}
       <g
         transform={`rotate(${angleDeg}, ${CX}, ${CY})`}
-        style={{ transition: "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)" }}
+        tyle={{ transition: "transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}
       >
         {/* Dark pill background */}
         <rect
@@ -125,17 +115,6 @@ function KnobDial({ angleDeg }: { angleDeg: number }) {
           strokeWidth={2}
           strokeLinecap="round"
           opacity={0.8}
-        />
-
-        {/* Rounded tip */}
-        <circle
-          cx={CX + KNOB_R + ARM_LENGTH}
-          cy={CY}
-          r={ARM_TIP_R}
-          fill="var(--color-roll-bg)"
-          stroke="var(--color-roll-text)"
-          strokeWidth={1.5}
-          opacity={0.9}
         />
       </g>
     </g>

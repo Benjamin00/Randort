@@ -123,6 +123,17 @@ export default function Home() {
 
           {/* Status indicator — top right */}
           <div className="flex items-center" style={{ gap: 8 }}>
+            <span
+              style={{
+                fontSize: 11,
+                letterSpacing: "0.12em",
+                color: "var(--color-text-tertiary)",
+                fontWeight: 500,
+                textTransform: "uppercase",
+              }}
+            >
+              {isLoading ? "Searching" : hasLocation ? "Has Location" : geoLoading ? "Finding…" : "No Location"}
+            </span>
             {isLoading ? (
               <motion.div
                 animate={{ rotate: 360 }}
