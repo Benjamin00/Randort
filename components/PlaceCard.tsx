@@ -153,23 +153,41 @@ export function PlaceCard({
               )}
           </p>
 
-          {/* "Let's Go" button — maps deep link */}
-          <a
-            href={`https://www.google.com/maps/place/?q=place_id:${place.googlePlaceId}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full text-center font-medium select-none"
-            style={{
-              backgroundColor: "var(--color-roll-bg)",
-              color: "var(--color-roll-text)",
-              borderRadius: 16,
-              padding: "16px 24px",
-              fontSize: 18,
-              boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-            }}
-          >
-            Let&apos;s Go
-          </a>
+          {/* "Let's Go" buttons — maps deep links */}
+          <div className="flex w-full" style={{ gap: 10 }}>
+            <a
+              href={buildGoogleMapsUrl(place)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-1 items-center justify-center text-center font-medium select-none"
+              style={{
+                backgroundColor: "var(--color-roll-bg)",
+                color: "var(--color-roll-text)",
+                borderRadius: 16,
+                padding: "16px 12px",
+                fontSize: 16,
+                boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+              }}
+            >
+              Google Maps
+            </a>
+            <a
+              href={buildAppleMapsUrl(place)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-1 items-center justify-center text-center font-medium select-none"
+              style={{
+                backgroundColor: "var(--color-roll-bg)",
+                color: "var(--color-roll-text)",
+                borderRadius: 16,
+                padding: "16px 12px",
+                fontSize: 16,
+                boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+              }}
+            >
+              Apple Maps
+            </a>
+          </div>
 
           {/* "Show me another" text link */}
           {remainingCount > 0 && (
@@ -192,6 +210,18 @@ export function PlaceCard({
       ) : null}
     </motion.div>
   );
+}
+
+/* ─── Maps URL builders ─────────────────────────────────────────────────── */
+
+function buildGoogleMapsUrl(place: EnrichedPlace): string {
+  const name = encodeURIComponent(place.name);
+  return `https://www.google.com/maps/search/?api=1&query=${name}&query_place_id=${place.googlePlaceId}`;
+}
+
+function buildAppleMapsUrl(place: EnrichedPlace): string {
+  const name = encodeURIComponent(place.name);
+  return `https://maps.apple.com/?q=${name}&ll=${place.lat},${place.lng}`;
 }
 
 /* ─── Loading shuffle animation ──────────────────────────────────────────── */
