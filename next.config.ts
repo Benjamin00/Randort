@@ -2,8 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
-  // basePath: "/Randort",
-  // assetPrefix: "/Randort/",
+  basePath: process.env.NODE_ENV === "production" ? "/Randort" : "",
+  assetPrefix: process.env.NODE_ENV === "production" ? "/Randort/" : "",
   images: {
     remotePatterns: [
       {
