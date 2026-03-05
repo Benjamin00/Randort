@@ -101,8 +101,12 @@ export default function Home() {
       style={{ backgroundColor: "var(--color-background)" }}
     >
       <div
-        className="relative flex w-full flex-col min-h-dvh md:min-h-0 md:w-[640px] md:rounded-2xl md:shadow-[0_8px_40px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)]"
-        style={{ backgroundColor: "var(--color-background)" }}
+        className="relative flex w-full flex-col min-h-dvh md:min-h-0 md:rounded-2xl md:shadow-[0_8px_40px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)]"
+        style={{ 
+          backgroundColor: "var(--color-background)",
+          maxWidth: "min(100%, 500px)",
+          margin: "0 auto",
+        }}
       >
         {/* Top bar — title + indicator */}
         <div
@@ -161,12 +165,12 @@ export default function Home() {
 
         {/* Zone 1 — Purpose statement */}
         <header
-          className="text-left"
-          style={{ paddingLeft: 24, paddingRight: 24, paddingTop: 8 }}
+          className="text-center"
+          style={{ paddingLeft: 24, paddingRight: 24, paddingTop: 20, paddingBottom: 4 }}
         >
           <h1
             style={{
-              fontSize: 28,
+              fontSize: 30,
               fontWeight: 700,
               lineHeight: 1.15,
               letterSpacing: "-0.01em",
@@ -174,24 +178,24 @@ export default function Home() {
               fontFamily: "var(--font-display)",
             }}
           >
-            I want to go someplace
+            I want to go someplace...
           </h1>
         </header>
 
         {/* Zones 2–4 — Filter controls */}
         <div
           className="flex flex-1 flex-col"
-          style={{ paddingLeft: 24, paddingRight: 24, paddingTop: 20, gap: 20 }}
+          style={{ paddingLeft: 24, paddingRight: 24, paddingTop: 24, gap: 24 }}
         >
-          <section aria-label="Distance">
+          <section aria-label="Distance"  style={{ paddingLeft: 20, paddingRight: 20 }}>
             <RadiusSlider value={radius} onChange={setRadius} />
           </section>
-          
+
           <section aria-label="Mood">
             <MoodSelector
               selected={selectedMoods}
               onSelectionChange={setSelectedMoods}
-            />
+             />
           </section>
 
           <section aria-label="Price filter">

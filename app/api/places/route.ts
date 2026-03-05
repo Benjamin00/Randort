@@ -130,8 +130,8 @@ export async function POST(request: Request): Promise<NextResponse<RollResponse 
     /* Step 1: Nearby Search */
     const raw = await nearbySearch(lat, lng, radius, types);
 
-    /* Step 2: Filter (quality, price, availability) */
-    const filtered = filterAndTransform(raw, { maxPriceLevel });
+    /* Step 2: Filter (quality, price, availability, chains, boring types) */
+    const filtered = filterAndTransform(raw, { maxPriceLevel, requestedTypes: types });
 
     if (filtered.length === 0) {
       console.log("[/api/places] Zero results after filtering");
@@ -166,8 +166,15 @@ export async function POST(request: Request): Promise<NextResponse<RollResponse 
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
     console.error("[/api/places] ERROR:", message);
+
+    /* Surface API-specific errors to help with debugging */
+    const isApiNotEnabled = message.includes("403") || message.includes("not enabled") || message.includes("PERMISSION_DENIED");
+    const userMessage = isApiNotEnabled
+      ? "Google Places API (New) may not be enabled. Check your Google Cloud Console."
+      : "Failed to fetch places. Please try again.";
+
     return NextResponse.json(
-      { error: "Failed to fetch places. Please try again." },
+      { error: userMessage, detail: message },
       { status: 502 },
     );
   }

@@ -42,11 +42,15 @@ export function PlaceCard({
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: "100%", opacity: 0, transition: CARD_EXIT }}
       transition={CARD_ENTER}
-      className="absolute inset-x-0 bottom-0 z-10 overflow-y-auto"
+      className="absolute z-10 overflow-y-auto"
       style={{
-        top: 0,
+        top: 12,
+        left: 8,
+        right: 8,
+        bottom: 12,
+        borderRadius: "20px 20px 20px 20px",
         backgroundColor: "var(--color-background)",
-        boxShadow: "0 -8px 32px rgba(0,0,0,0.15)",
+        boxShadow: "0 -4px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04)",
         padding: 24,
         paddingBottom: 40,
       }}

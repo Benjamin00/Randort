@@ -2,14 +2,14 @@
 
 import { motion } from "framer-motion";
 
-type MoodId = "eat" | "go_out" | "chill" | "outside" | "anything";
+type MoodId = "eat" | "go_out" | "chill" | "outside" | "adventure";
 
 const MOODS: { id: MoodId; label: string; icon: string }[] = [
   { id: "eat", label: "Eat", icon: "🍽️" },
   { id: "go_out", label: "Go Out", icon: "🍸" },
   { id: "chill", label: "Chill", icon: "☕" },
   { id: "outside", label: "Outside", icon: "🌳" },
-  { id: "anything", label: "Anything", icon: "🎲" }
+  { id: "adventure", label: "Adventure", icon: "🎲" }
 ];
 
 /* Resolved hex so Framer Motion can interpolate between states */

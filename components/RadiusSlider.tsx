@@ -6,9 +6,9 @@ import { motion, useMotionValue, animate, useTransform, AnimatePresence } from "
 const STEPS = [0.5, 1, 2, 5, 10, 15] as const;
 type RadiusMiles = (typeof STEPS)[number];
 
-const THUMB_W = 28;
+const THUMB_W = 50;
 const THUMB_H = 36;
-const TRACK_H = 4;
+const TRACK_H = 6;
 const HIT_PAD = 20;
 const SETTLE_SPRING = { type: "spring" as const, stiffness: 400, damping: 30 };
 

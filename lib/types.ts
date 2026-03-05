@@ -99,12 +99,11 @@ export interface PlacesErrorResponse {
 
 /* ── Mood → Google type mapping ─────────────────────────────────────────── *
  *
- * "restaurant" covers all cuisine sub-types (italian_restaurant, etc.)
- * so we don't list each one individually. We add specific non-restaurant
- * food types (bakery, cafe, etc.) and notable sub-categories only where
- * Google treats them as distinct primary types.
+ * We use the Places API (New) Nearby Search which supports all Table A
+ * types and accepts up to 50 includedTypes in a single POST request.
  *
- * Types sourced from the Google Places API (New) Table A.
+ * Types sourced from Google Places API (New) Table A:
+ * https://developers.google.com/maps/documentation/places/web-service/place-types
  * ─────────────────────────────────────────────────────────────────────── */
 
 export const MOOD_TYPE_MAP: Record<string, string[]> = {
@@ -112,14 +111,11 @@ export const MOOD_TYPE_MAP: Record<string, string[]> = {
     "restaurant",
     "bakery",
     "cafe",
-    "cafeteria",
     "coffee_shop",
     "deli",
     "dessert_shop",
     "diner",
-    "fast_food_restaurant",
     "fine_dining_restaurant",
-    "food_court",
     "gastropub",
     "ice_cream_shop",
     "juice_shop",
@@ -131,6 +127,7 @@ export const MOOD_TYPE_MAP: Record<string, string[]> = {
     "sushi_restaurant",
     "vegan_restaurant",
     "vegetarian_restaurant",
+    "tea_house",
   ],
 
   go_out: [
@@ -140,8 +137,6 @@ export const MOOD_TYPE_MAP: Record<string, string[]> = {
     "brewery",
     "brewpub",
     "cocktail_bar",
-    "hookah_bar",
-    "irish_pub",
     "lounge_bar",
     "night_club",
     "pub",
@@ -153,20 +148,14 @@ export const MOOD_TYPE_MAP: Record<string, string[]> = {
     "karaoke",
     "live_music_venue",
     "movie_theater",
-    "opera_house",
     "performing_arts_theater",
-    "philharmonic_hall",
-    "amphitheatre",
     "video_arcade",
     "bowling_alley",
     "casino",
-    "amusement_center",
     "amusement_park",
+    "amusement_center",
     "event_venue",
-    "go_karting_venue",
-    "miniature_golf_course",
-    "paintball_center",
-    "water_park",
+    "opera_house",
   ],
 
   chill: [
@@ -188,13 +177,12 @@ export const MOOD_TYPE_MAP: Record<string, string[]> = {
     "garden",
     "plaza",
     "fountain",
-    "coworking_space",
-    "internet_cafe",
+    "dessert_shop",
     "winery",
     "vineyard",
-    "community_center",
     "cultural_center",
-    "visitor_center",
+    "public_bath",
+    "massage_spa"
   ],
 
   outside: [
@@ -223,57 +211,27 @@ export const MOOD_TYPE_MAP: Record<string, string[]> = {
     "golf_course",
     "swimming_pool",
     "tennis_court",
-    "sports_complex",
-    "sports_activity_location",
     "wildlife_park",
     "wildlife_refuge",
     "zoo",
     "aquarium",
-    "cemetery"
   ],
 
-  anything: [
+  adventure: [
     "tourist_attraction",
-    "art_studio",
-    "auditorium",
+    "art_gallery",
+    "museum",
+    "amusement_park",
+    "aquarium",
+    "zoo",
+    "book_store",
+    "stadium",
     "castle",
     "cultural_landmark",
-    "historical_place",
-    "historical_landmark",
-    "monument",
-    "sculpture",
-    "observation_deck",
-    "ferris_wheel",
+    "miniature_golf_course",
+    "adventure_sports_center",
+    "amusement_center",
     "roller_coaster",
-    "escape_room",
-    "lodging",
-    "hotel",
-    "hostel",
-    "bed_and_breakfast",
-    "shopping_mall",
-    "department_store",
-    "flea_market",
-    "thrift_store",
-    "grocery_store",
-    "supermarket",
-    "farmers_market",
-    "clothing_store",
-    "electronics_store",
-    "furniture_store",
-    "book_store",
-    "gift_shop",
-    "pet_store",
-    "sporting_goods_store",
-    "hindu_temple",
-    "cemetery",
-    "university",
-    "train_station",
-    "bus_station",
-    "airport",
-    "ferry_terminal",
-    "ski_resort",
-    "stadium",
-    "arena",
-    "race_course",
+    "psychic"
   ],
 };

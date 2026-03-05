@@ -1,17 +1,16 @@
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY ?? "";
-const PHOTO_URL = "https://maps.googleapis.com/maps/api/place/photo";
 
 /**
- * Builds a Google Places photo URL from a photo_reference.
- * Returns the direct URL that redirects to the image.
+ * Builds a Google Places (New) photo URL from a photo resource name.
+ *
+ * The New API returns photo names like "places/PLACE_ID/photos/PHOTO_REF".
+ * The media endpoint is: https://places.googleapis.com/v1/{name}/media
  *
  * Note: These URLs contain the API key but are served server-side
  * only — the client receives the final image data, not this URL.
- * For MVP, we return this URL directly. In production, proxy through
- * our own /api/photo endpoint to hide the key.
  */
 export function buildPhotoUrl(
-  photoReference: string,
+  photoName: string,
   maxWidth: number = 800,
 ): string {
   if (!API_KEY) {
@@ -20,10 +19,9 @@ export function buildPhotoUrl(
   }
 
   const params = new URLSearchParams({
-    maxwidth: String(maxWidth),
-    photo_reference: photoReference,
+    maxWidthPx: String(maxWidth),
     key: API_KEY,
   });
 
-  return `${PHOTO_URL}?${params.toString()}`;
+  return `https://places.googleapis.com/v1/${photoName}/media?${params.toString()}`;
 }
