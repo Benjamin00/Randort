@@ -41,14 +41,11 @@ export function MoodSelector({
   return (
     <div>
       <p
-        className="text-text-secondary"
-        style={{ fontSize: 14, marginBottom: 8 }}
+        style={{ fontSize: 14, color: "var(--color-text-secondary)", marginBottom: 8 }}
       >
         To...
       </p>
-{/* Space the buttons evenly, but not too far apart, */}
-      <div className="flex justify-center" style={{ gap: 24 }}>
-        {/* All mood knobs in a uniform row */}
+      <div className="flex justify-between">
         {MOODS.map((mood) => (
           <MoodKnob
             key={mood.id}
@@ -81,17 +78,17 @@ function MoodKnob({
       type="button"
       onClick={onPress}
       className="flex cursor-pointer flex-col items-center"
-      style={{ gap: 6 }}
+      style={{ gap: 4 }}
     >
       {/* Label above knob */}
       <span
-        className="text-center text-text-secondary leading-tight"
-        style={{ fontSize: 12 }}
+        className="text-center leading-tight"
+        style={{ fontSize: 11, color: "var(--color-text-secondary)" }}
       >
         {label}
       </span>
 
-      {/* Knob body: 48x48, always surface bg — depth changes on select */}
+      {/* Knob body: 56x56, surface bg — depth changes on select */}
       <motion.span
         animate={{
           boxShadow: active ? SHADOW_PRESSED : SHADOW_RAISED,
@@ -100,8 +97,8 @@ function MoodKnob({
         whileTap={{ scale: 0.95 }}
         className="flex items-center justify-center rounded-full"
         style={{
-          width: 48,
-          height: 48,
+          width: 56,
+          height: 56,
           backgroundColor: "var(--color-surface)",
         }}
       >
@@ -126,8 +123,8 @@ function MoodKnob({
         transition={{ type: "spring", stiffness: 400, damping: 20 }}
         className="rounded-full"
         style={{
-          width: 8,
-          height: 8,
+          width: 6,
+          height: 6,
           backgroundColor: "#4ADE80",
           boxShadow: active
             ? "0 0 6px rgba(74, 222, 128, 0.6)"

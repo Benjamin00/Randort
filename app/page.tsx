@@ -163,31 +163,12 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Zone 1 — Purpose statement */}
-        <header
-          className="text-center"
-          style={{ paddingLeft: 24, paddingRight: 24, paddingTop: 20, paddingBottom: 4 }}
-        >
-          <h1
-            style={{
-              fontSize: 30,
-              fontWeight: 700,
-              lineHeight: 1.15,
-              letterSpacing: "-0.01em",
-              color: "var(--color-text-primary)",
-              fontFamily: "var(--font-display)",
-            }}
-          >
-            I want to go someplace...
-          </h1>
-        </header>
-
-        {/* Zones 2–4 — Filter controls */}
+        {/* Filter controls — start immediately after brand strip */}
         <div
           className="flex flex-1 flex-col"
-          style={{ paddingLeft: 24, paddingRight: 24, paddingTop: 24, gap: 24 }}
+          style={{ paddingLeft: 24, paddingRight: 24, paddingTop: 20, gap: 20 }}
         >
-          <section aria-label="Distance"  style={{ paddingLeft: 20, paddingRight: 20 }}>
+          <section aria-label="Distance">
             <RadiusSlider value={radius} onChange={setRadius} />
           </section>
 
@@ -219,7 +200,34 @@ export default function Home() {
           )}
         </div>
 
-        <div style={{ padding: "16px 24px" }}>
+        {/* Faceplate — identity plate */}
+        <div className="text-center" style={{ marginTop: 24, marginBottom: 24 }}>
+          <h2
+            style={{
+              fontFamily: "var(--font-audiowide)",
+              fontSize: 20,
+              color: "var(--color-text-primary)",
+              letterSpacing: "0.02em",
+              margin: 0,
+            }}
+          >
+            Place Randomizer
+          </h2>
+          <span
+            style={{
+              fontFamily: "var(--font-audiowide)",
+              fontSize: 11,
+              color: "var(--color-text-tertiary)",
+              letterSpacing: "0.15em",
+              display: "block",
+              marginTop: 4,
+            }}
+          >
+            BT-01
+          </span>
+        </div>
+
+        <div style={{ padding: "0 24px 16px" }}>
           {geoLoading && (
             <p
               className="text-center"

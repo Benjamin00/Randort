@@ -33,11 +33,11 @@ function getAngleForIndex(index: number): number {
 
 const OPTION_ANGLES = PRICE_OPTIONS.map((_, i) => getAngleForIndex(i));
 
-const KNOB_R = 28;
-const ARM_LENGTH = 10;
-const ARM_TIP_R = 4;
-const TICK_INNER = KNOB_R + 4;
-const TICK_OUTER = KNOB_R + 10;
+const KNOB_R = 22;
+const ARM_LENGTH = 8;
+const ARM_TIP_R = 3;
+const TICK_INNER = KNOB_R + 3;
+const TICK_OUTER = KNOB_R + 8;
 
 /* SVG viewport — enough room for knob + arm + tip + shadow */
 const SVG_SIZE = (KNOB_R + ARM_LENGTH + ARM_TIP_R + 8) * 2;
@@ -140,7 +140,7 @@ export function PriceSelector({
   }
 
   return (
-    <div className="flex items-center justify-center" style={{ gap: 24 }}>
+    <div className="flex items-center justify-center" style={{ gap: 16 }}>
       <svg
         width={SVG_SIZE}
         height={SVG_SIZE}
@@ -169,18 +169,20 @@ export function PriceSelector({
               key={option.label}
               type="button"
               onClick={() => onChange(option.value)}
-              className="cursor-pointer text-left text-sm font-medium rounded"
+              className="cursor-pointer text-left font-medium rounded"
               style={{
-                padding: "3px 4px",
+                padding: "1px 4px",
+                fontSize: 13,
+                lineHeight: 1.3,
                 color: isLit
-                  ? "#D4920F"
+                  ? "#D4A843"
                   : isSelected
                     ? "var(--color-text-primary)"
                     : "var(--color-text-tertiary)",
                 textShadow: isLit
-                  ? "0 0 10px rgba(212,146,15,0.5)"
+                  ? "0 0 8px rgba(212, 168, 67, 0.3)"
                   : "none",
-                marginBottom: index === 0 ? 4 : 0,
+                fontWeight: isSelected && isAnyPrice ? 500 : undefined,
                 transition: "color 0.2s ease, text-shadow 0.2s ease",
               }}
               role="radio"
