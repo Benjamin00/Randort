@@ -1,0 +1,50 @@
+schema_version: 1
+
+# Identity
+slug: randort
+name: Randо
+model_number: BT-01
+tagline: Random place discovery — go somewhere you wouldn't have chosen yourself
+problem: |
+  Picks a real place near you to go when decision fatigue wins. Set a radius,
+  mood, and price; tap Roll; get a single mystery card built from real Google
+  Places reviews with the name and address withheld. The place reveals itself
+  only after you commit to going.
+
+# Classification
+archetype: web-app
+runtime: node
+tags: [discovery, maps, byo-key, pwa, braun]
+
+# Source & version
+source: https://github.com/Benjamin00/Randort
+version: v0.1.0
+license: MIT
+status: alpha
+
+# Showcase metadata
+screenshot: ./screenshot.png
+
+# Run story
+# `npm run dev` triggers a `predev` hook that prompts for the API key on
+# first run if .env.local is missing or empty. Subsequent runs skip the prompt.
+install:
+  one_liner: |
+    git clone https://github.com/Benjamin00/Randort.git && cd Randort && npm ci && npm run dev
+  followup: |
+    First run prompts interactively for GOOGLE_PLACES_API_KEY. For
+    non-interactive setup, copy .env.example to .env.local first.
+  ports: [3000]
+
+# Configuration
+config:
+  required:
+    - name: GOOGLE_PLACES_API_KEY
+      doc: https://console.cloud.google.com/google/maps-apis/credentials
+      purpose: Server-side Google Places API calls. Never sent to the browser.
+  optional: []
+
+# Maintainer
+maintainer:
+  name: Benjamin Hill
+  url: https://github.com/Benjamin00
